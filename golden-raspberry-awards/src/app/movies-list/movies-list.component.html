@@ -1,0 +1,38 @@
+<div class="movies-list-container">
+  <div class="filters">
+    <label for="filterYear">Year: </label>
+    <input type="number" id="filterYear" [(ngModel)]="filterYear" class="input-field"/>
+    <label for="filterWinner">Winner: </label>
+    <select id="filterWinner" [(ngModel)]="filterWinner" class="input-field">
+      <option [ngValue]="undefined">All</option>
+      <option [ngValue]="true">Yes</option>
+      <option [ngValue]="false">No</option>
+    </select>
+    <button (click)="applyFilters()" class="apply-button">Apply Filters</button>
+  </div>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Studios</th>
+        <th>Producers</th>
+        <th>Winner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.year }}</td>
+        <td>{{ movie.studios.join(', ') }}</td>
+        <td>{{ movie.producers.join(', ') }}</td>
+        <td>{{ movie.winner ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button (click)="changePage(page - 1)" [disabled]="page === 0">Previous</button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button (click)="changePage(page + 1)" [disabled]="page + 1 >= totalPages">Next</button>
+  </div>
+</div>
