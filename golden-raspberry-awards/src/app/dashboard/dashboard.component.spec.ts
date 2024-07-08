@@ -4,6 +4,8 @@ import { MoviesService } from '../services/movies.service';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -12,11 +14,20 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     const moviesServiceSpy = jasmine.createSpyObj('MoviesService', ['getMovies']);
+    const activatedRouteStub = {
+      snapshot: {
+        paramMap: {
+          get: () => '1', // mock parameter value
+        },
+      },
+    };
 
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
-      imports: [FormsModule, HttpClientTestingModule],
-      providers: [{ provide: MoviesService, useValue: moviesServiceSpy }],
+      imports: [DashboardComponent, FormsModule, HttpClientTestingModule, RouterTestingModule],
+      providers: [
+        { provide: MoviesService, useValue: moviesServiceSpy },
+        { provide: ActivatedRoute, useValue: activatedRouteStub },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);

@@ -38,8 +38,20 @@ export class MoviesListComponent implements OnInit {
   }
 
   applyFilters(): void {
-    this.page = 0; // Resetar para a primeira página ao aplicar filtros
-    this.getMovies();
+    let queryParams: any = {
+      page: this.page,
+      size: this.size
+    };
+    if (this.filterYear) {
+      queryParams.year = this.filterYear;
+    }
+    if (this.filterWinner !== undefined) {
+      queryParams.winner = this.filterWinner;
+    }
+    this.moviesService.getMovies(queryParams).subscribe(data => {
+      this.movies = data.content;
+      this.totalPages = data.totalPages;
+    });
   }
 
   changePage(page: number): void {
