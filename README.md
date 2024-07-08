@@ -5,7 +5,6 @@ O projeto foi desenvolvido usando Angular 18v
 
 ## Ferramentas e tecnologias
 A versão do node utilizada no projeto foi a 20.15.0 (versão recomendada para testes locais)<br>
-Usar versão 18.* ><br>
 Docker para conteinerização <br>
 nginx para configuração de rotas no servidor (ver arquivo nginx.conf)
 
