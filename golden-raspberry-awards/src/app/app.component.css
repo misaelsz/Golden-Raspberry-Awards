@@ -1,4 +1,12 @@
-.content {
+header {
+    background-color: #333;
+    color: white;
+    padding: 8px 20px;
+    text-align: left;
+    font-size: 10px;
+  }
+  
+  .content {
     margin-left: 220px; /* Espaço para a navbar */
     padding: 20px;
   }

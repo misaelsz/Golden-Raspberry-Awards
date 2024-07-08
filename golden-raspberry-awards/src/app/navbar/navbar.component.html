@@ -1,11 +1,10 @@
 <nav class="navbar">
   <ul class="navbar-list">
     <li class="navbar-item">
-      <a routerLink="dashboard" routerLinkActive="active" class="navbar-link">Dashboard</a>
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="navbar-link">Dashboard</a>
     </li>
     <li class="navbar-item">
-      <a routerLink="movies-list" routerLinkActive="active" class="navbar-link">List</a>
+      <a routerLink="/movies-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="navbar-link">List</a>
     </li>
-
   </ul>
 </nav>

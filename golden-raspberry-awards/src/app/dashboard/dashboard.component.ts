@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   searchWinnersByYear(): void {
     if (this.searchYear) {
       this.moviesService.getMovies({ winner: true, year: this.searchYear }).subscribe(data => {
-        this.winnersByYear = [data];
+        this.winnersByYear = data;
       });
     }
   }
