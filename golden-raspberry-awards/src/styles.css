@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@media (min-width: 768px) and (min-height: 1280px) {
+    body {
+      font-size: 16px;
+      background-color: lightgray;
+    }
+  
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+}
