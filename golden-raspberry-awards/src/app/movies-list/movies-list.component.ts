@@ -17,6 +17,7 @@ export class MoviesListComponent implements OnInit {
   totalPages!: number;
   filterYear!: number;
   filterWinner!: boolean;
+  maxPagesToShow: number = 5;
 
   constructor(private moviesService: MoviesService) { }
 
@@ -57,5 +58,28 @@ export class MoviesListComponent implements OnInit {
   changePage(page: number): void {
     this.page = page;
     this.getMovies();
+  }
+
+  getPages(): number[] {
+    const startPage = Math.floor(this.page / this.maxPagesToShow) * this.maxPagesToShow;
+    return Array.from({ length: this.maxPagesToShow }, (_, i) => startPage + i).filter(p => p < this.totalPages);
+  }
+
+  goToFirstPage(): void {
+    this.changePage(0);
+  }
+
+  goToLastPage(): void {
+    this.changePage(this.totalPages - 1);
+  }
+
+  goToPreviousPageSet(): void {
+    const startPage = Math.floor(this.page / this.maxPagesToShow) * this.maxPagesToShow;
+    this.changePage(Math.max(startPage - this.maxPagesToShow, 0));
+  }
+
+  goToNextPageSet(): void {
+    const startPage = Math.floor(this.page / this.maxPagesToShow) * this.maxPagesToShow;
+    this.changePage(Math.min(startPage + this.maxPagesToShow, this.totalPages - 1));
   }
 }
